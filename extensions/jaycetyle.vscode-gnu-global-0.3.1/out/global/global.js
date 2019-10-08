@@ -1,0 +1,153 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const executableBase_1 = require("./executableBase");
+const vscode = require("vscode");
+const path = require("path");
+const fs = require("fs");
+/*
+ * Parse gnu global output with -x option
+ * '-x', '--cxref': Use standard ctags cxref (with ‘-x’) format.
+ * Sample output:
+ * nfs_fh 19 /home/jayce/Projects/linux/include/linux/nfs.h struct nfs_fh {
+ */
+class XRef {
+    constructor(symbol, lineNo, path, info) {
+        this.symbol = symbol;
+        this.lineNo = lineNo;
+        this.path = path;
+        this.info = info;
+    }
+    /*
+     * Parse global xref(-x) output line and return XRef structure.
+     *
+     * A bad design in this output format is that it uses %-16s to print the pathname.
+     * So if the pathname length < 16, it will append several white spaces after it and
+     * confuses with the prefix white spaces of codes output.
+     *
+     * The following codes are cut from gnu global source code.
+     * fprintf(cv->op, "%-16s %4d %-16s ", tag, lineno, convert_pathname(cv, path));
+     * code_fputs(rest, cv->op);
+     */
+    static parseLine(line) {
+        let tokens = line.match(/([^ ]*) +([^ ]*) +([^ ]*) (.*)/);
+        if (tokens === null || tokens.length != 5)
+            throw 'Parse xref output failed: ' + line;
+        const symbol = tokens[1];
+        const lineNo = tokens[2];
+        const path = tokens[3];
+        const info = tokens[4].substr(path.length >= 16 ? 0 : 16 - path.length);
+        return new XRef(symbol, lineNo ? parseInt(lineNo) - 1 : 0, path ? path.replace(/%20/g, ' ') : path, info);
+    }
+    /*
+    * GNU Global doesn't provide symbol kind inforamtion.
+    * This is a simple implementation to get the symbol kind but is not accurate.
+    * Originally developed by austin in https://github.com/austin-----/code-gnu-global
+    */
+    get symbolKind() {
+        var kind = vscode.SymbolKind.Variable;
+        if (this.info.indexOf('(') != -1) {
+            kind = vscode.SymbolKind.Function;
+        }
+        else if (this.info.startsWith('class ')) {
+            kind = vscode.SymbolKind.Class;
+        }
+        else if (this.info.startsWith('struct ')) {
+            kind = vscode.SymbolKind.Class;
+        }
+        else if (this.info.startsWith('enum ')) {
+            kind = vscode.SymbolKind.Enum;
+        }
+        return kind;
+    }
+    static getSymbolStartIndex(line, symbol) {
+        const regex = RegExp("([a-zA-Z0-9_]*)" + symbol + "([a-zA-Z0-9_]*)", 'g');
+        let result;
+        while ((result = regex.exec(line)) !== null) {
+            if (result[0] === symbol) {
+                return result.index;
+            }
+        }
+        // Cannot find symbol by regex(?). Fallback to indexOf.
+        return line.indexOf(symbol);
+    }
+    get range() {
+        const startColumn = XRef.getSymbolStartIndex(this.info, this.symbol);
+        const endColumn = startColumn + this.symbol.length;
+        const startPosi = new vscode.Position(this.lineNo, startColumn);
+        const endPosi = new vscode.Position(this.lineNo, endColumn);
+        return new vscode.Range(startPosi, endPosi);
+    }
+    get location() {
+        return new vscode.Location(vscode.Uri.file(this.path), this.range);
+    }
+}
+/*
+ * foreach none empty string {
+ *    push callbackfu return value to output array if it is not undefined
+ * }
+ */
+function mapNoneEmpty(lines, callbackfn) {
+    let ret = [];
+    lines.forEach(line => {
+        if (!line.length)
+            return; // empty
+        const val = callbackfn(line);
+        if (val)
+            ret.push(val);
+    });
+    return ret;
+}
+class Global extends executableBase_1.default {
+    constructor(configuration) {
+        super(configuration);
+    }
+    get executable() {
+        return this.configuration.globalExecutable.get();
+    }
+    getVersion() {
+        return this.execute(['--version'])[0];
+    }
+    provideDefinition(document, position) {
+        const symbol = document.getText(document.getWordRangeAtPosition(position));
+        const lines = this.executeOnDocument(['--encode-path', '" "', '-xaT', symbol], document);
+        return mapNoneEmpty(lines, line => XRef.parseLine(line).location);
+    }
+    provideReferences(document, position) {
+        const symbol = document.getText(document.getWordRangeAtPosition(position));
+        const lines = this.executeOnDocument(['--encode-path', '" "', '-xra', symbol], document);
+        return mapNoneEmpty(lines, line => XRef.parseLine(line).location);
+    }
+    provideCompletionItems(document, position) {
+        const symbol = document.getText(document.getWordRangeAtPosition(position));
+        const lines = this.executeOnDocument(['-cT', symbol], document);
+        return mapNoneEmpty(lines, line => new vscode.CompletionItem(line));
+    }
+    provideDocumentSymbols(document) {
+        const lines = this.executeOnDocument(['--encode-path', '" "', '-xaf', document.fileName], document);
+        return mapNoneEmpty(lines, (line) => {
+            const xref = XRef.parseLine(line);
+            return new vscode.SymbolInformation(xref.symbol, xref.symbolKind, '', // container name, we don't support it
+            xref.location);
+        });
+    }
+    updateTags(document) {
+        this.executeOnDocument(['-u'], document);
+    }
+    getGtagsSize(document) {
+        let gtagsPath = path.join(this.executeOnDocument(['-p'], document)[0], 'GTAGS');
+        return fs.lstatSync(gtagsPath).size;
+    }
+    getLibPathEnvValue(docUri) {
+        const paths = this.configuration.libraryPaths.get(docUri);
+        return paths.join(path.delimiter);
+    }
+    executeOnDocument(args, document) {
+        const env = {
+            'GTAGSLIBPATH': this.getLibPathEnvValue(document.uri),
+            'GTAGSOBJDIRPREFIX': this.configuration.objDirPrefix.get()
+        };
+        return this.execute(args, path.dirname(document.fileName), env);
+    }
+}
+exports.default = Global;
+//# sourceMappingURL=global.js.map

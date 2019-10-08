@@ -1,0 +1,87 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var vscode = require('vscode');
+var projectRoot = vscode.workspace.rootPath;
+var simpleGit = require('simple-git')((projectRoot) ? projectRoot : '.');
+var outputChannel = vscode.window.createOutputChannel("Git");
+function GetGitStatus(file) {
+    simpleGit.status(function (error, status) {
+        var fileList = [];
+        if (error) {
+            showOutput(error);
+            return 'error';
+        }
+        fileList.push({
+            'label': "Add All Modified",
+            'description': "AddAllModified"
+        });
+        fileList.push({
+            'label': "Add All Modified + Untracked",
+            'description': "AddAllModifiedUntracked"
+        });
+        fileList = fillFileList(status, fileList, true);
+        var qp = vscode.window.showQuickPick(fileList);
+        qp.then(function (result) {
+            if (result == null) {
+                return;
+            }
+            if (result.description == "AddAllModified") {
+                simpleGit.status(function (error, status) {
+                    status.modified.forEach(function (element) {
+                        simpleGit.add(element);
+                    }, this);
+                });
+            }
+            else if (result.description == "AddAllModifiedUntracked") {
+                simpleGit.status(function (error, status) {
+                    status.modified.forEach(function (element) {
+                        simpleGit.add(element);
+                    }, this);
+                    status.not_added.forEach(function (element) {
+                        simpleGit.add(element);
+                    }, this);
+                });
+            }
+            else {
+                simpleGit.add(result.label, function (result) {
+                    console.log(result);
+                });
+            }
+        });
+    });
+    return 'unknown';
+}
+exports.GetGitStatus = GetGitStatus;
+function fillFileList(status, fileList, is_gitadd = false) {
+    console.log(status);
+    status.modified.forEach(function (element) {
+        var item = {
+            'label': element,
+            'description': "Modified"
+        };
+        fileList.push(item);
+    }, this);
+    status.not_added.forEach(function (element) {
+        var item = {
+            'label': element,
+            'description': "Untracked"
+        };
+        fileList.push(item);
+    }, this);
+    if (!is_gitadd) {
+        status.created.forEach(function (element) {
+            var item = {
+                'label': element,
+                'description': "New"
+            };
+            fileList.push(item);
+        }, this);
+    }
+    return fileList;
+}
+function showOutput(text) {
+    outputChannel.clear();
+    outputChannel.append(text);
+    outputChannel.show(vscode.ViewColumn.Three);
+}
+//# sourceMappingURL=simpleGit.js.map

@@ -1,0 +1,16 @@
+{
+    "Snippet: Table Extension": {
+        "prefix": "ttableext(CRS)",
+        "body": [
+            "tableextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetTable} //${4:MyTargetTableId}",
+            "{",
+            "\tfields",
+            "\t{",
+            "\t\t${0}",
+            "\t}",
+            "\t",
+            "}"
+        ],
+        "description": "Snippet (CRS): Table Extension"
+    }
+}

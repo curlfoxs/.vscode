@@ -1,0 +1,90 @@
+{
+    "Snippet: Table": {
+        "prefix": "ttable(CRS)",
+        "body": [
+            "table ${1:id} ${2:MyTable}",
+            "{",
+            "\tDataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "\t",
+            "\tfields",
+            "\t{",
+            "\t\tfield(1;\"${4:MyField}\"; ${5:Integer})",
+            "\t\t{",
+            "\t\t\tCaption = '${4:MyField}';",
+            "\t\t\tDataClassification = ${6|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "\t\t}",
+            "\t\t$7",
+            "\t}",
+            "\t",
+            "\tkeys",
+            "\t{",
+            "\t\tkey(${8:PK}; \"${4:MyField}\")",
+            "\t\t{",
+            "\t\t\tClustered = ${9|true,false|};",
+            "\t\t}",
+            "\t}",
+            "\t",
+            "}"
+        ],
+        "description": "Snippet: Table"
+    },
+    "Snippet: Table Field": {
+        "prefix": "tfield(CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,DateTime,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time,Enum|})",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table Field"
+    },
+    "Snippet: Table Field Option": {
+        "prefix": "tfieldoption(CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; Option)",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tDataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "\tOptionMembers = ${4:Default};",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table Field Option"
+    },
+    "Snippet: Table Field Code": {
+        "prefix": "tfieldcode(CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; Code[${3:Length}])",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table Field Code"
+    },
+    "Snippet: Table Field Text": {
+        "prefix": "tfieldtext(CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; Text[${3:Length}])",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table Field Text"
+    },
+    "Snippet: Table Key": {
+        "prefix": "tkey(CRS)",
+        "body": [
+            "key(${1:MyKey}; \"${2:MyField}\")",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Snippet: Table Key"
+    }
+}

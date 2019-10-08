@@ -1,0 +1,15 @@
+{
+	"messages": [
+		"Go to reference",
+		"Pending Rename",
+		"Go to reference",
+		"Candidates for Rename"
+	],
+	"keys": [
+		"goto.reference",
+		"pending.rename",
+		"goto.reference",
+		"candidates.for.rename"
+	],
+	"filePath": "src\\LanguageServer\\renameDataProvider"
+}

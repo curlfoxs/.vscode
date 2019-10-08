@@ -1,0 +1,38 @@
+{
+    "Snippet: Repeat Until": {
+        "prefix": "trepeat(CRS)",
+        "body": [
+            "if ${1:Rec}.FindSet() then begin",
+            "\trepeat",
+            "\t$0",
+            "\tuntil ${1:Rec}.Next() < 1;",
+            "end;"
+        ],
+        "description": "Snippet: if findset repeat until"
+    },
+    "Snippet (CRS): Declare a variable ": {
+        "description": "Snippet (CRS): Declare a variable",
+        "prefix": "tvar(CRS)",
+        "body": [
+            "${3:VariableName}: ${1:Type} ${2:Subtype};",
+            "${0}"
+        ]
+    },
+    "Snippet (CRS): Field Groups": {
+        "description": "Snippet (CRS): Add Field Groups section",
+        "prefix": "tfieldgroups(CRS)",
+        "body": [
+            "fieldgroups",
+            "{",
+            "\tfieldgroup(${1|DropDown,Brick|}; ${2:AddFieldsHere}) { }",
+            "}"
+        ]
+    },
+    "Snippet (CRS): Field Group": {
+        "description": "Snippet (CRS): Add Field Group",
+        "prefix": "tfieldgroup(CRS)",
+        "body": [
+            "fieldgroup(${1|DropDown,Brick|}; ${2:AddFieldsHere}) { }"
+        ]
+    }
+}
