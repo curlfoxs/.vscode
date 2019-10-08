@@ -78,7 +78,7 @@
 	},
 	"dependencies": {
 		"mac-open": "^0.1.3",
-		"open": "0.0.5"
+		"open": "6.4.0"
 	},
 	"__metadata": {
 		"id": "450d63ed-8ac6-4694-b26e-77cb20bcb25e",
