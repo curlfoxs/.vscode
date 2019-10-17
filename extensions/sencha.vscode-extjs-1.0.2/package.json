@@ -1,0 +1,148 @@
+{
+	"name": "vscode-extjs",
+	"displayName": "Sencha Ext JS",
+	"description": "Provides code completion for Sencha Ext JS",
+	"version": "1.0.2",
+	"publisher": "Sencha",
+	"engines": {
+		"vscode": "^1.7.x"
+	},
+	"icon": "senchaleaf.png",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:javascript",
+		"*"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "!editorIsOpen || editorIsOpen",
+					"command": "extension.vscode-extjs.startAppWatch",
+					"group": "Sencha Ext JS (Run)"
+				},
+				{
+					"when": "!editorIsOpen || editorIsOpen",
+					"command": "extension.vscode-extjs.fashionAppWatch",
+					"group": "Sencha Ext JS (Run)"
+				},
+				{
+					"when": "!editorIsOpen || editorIsOpen",
+					"command": "extension.vscode-extjs.createApp",
+					"group": "Sencha Ext JS (Create)"
+				},
+				{
+					"when": "!editorIsOpen || editorIsOpen",
+					"command": "extension.vscode-extjs.createWorkspace",
+					"group": "Sencha Ext JS (Create)"
+				},
+				{
+					"when": "!editorIsOpen || editorIsOpen",
+					"command": "extension.vscode-extjs.createPackage",
+					"group": "Sencha Ext JS (Create)"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "extension.vscode-extjs.enable",
+				"title": "Enable Ext JS IntelliSense for this Project"
+			},
+			{
+				"command": "extension.vscode-extjs.createApp",
+				"title": "New Ext JS App"
+			},
+			{
+				"command": "extension.vscode-extjs.viewConfig",
+				"title": "Edit Ext JS IntelliSense Configuration"
+			},
+			{
+				"command": "extension.vscode-extjs.refreshIndex",
+				"title": "Ext JS: Reindex Project for IntelliSense"
+			},
+			{
+				"command": "extension.vscode-extjs.startAppWatch",
+				"title": "Run sencha app watch"
+			},
+			{
+				"command": "extension.vscode-extjs.fashionAppWatch",
+				"title": "Run sencha app watch (Fashion)"
+			},
+			{
+				"command": "extension.vscode-extjs.stopAppWatch",
+				"title": "Stop sencha app watch"
+			},
+			{
+				"command": "extension.vscode-extjs.createWorkspace",
+				"title": "New Ext JS Workspace"
+			},
+			{
+				"command": "extension.vscode-extjs.createPackage",
+				"title": "New Ext JS Package"
+			},
+			{
+				"command": "extension.vscode-extjs.showLogs",
+				"title": "Show Ext JS Plugin Log File"
+			},
+			{
+				"command": "extension.vscode-extjs.editTemplates",
+				"title": "Edit Ext JS Snippets"
+			},
+			{
+				"command": "extension.vscode-extjs.viewLicense",
+				"title": "Reveal Ext JS Extension License Location"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extensions.vscode-extjs.goToDocs",
+				"key": "f1",
+				"title": "Go to Documentation",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+	"scripts": {
+		"shake-orion-core": "cp -f orion-core-minimal-package.json orion-core/package.json",
+		"fix-sencha-tern": "node ./scripts/fix-sencha-tern-deps.js",
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"package": "vsce package"
+	},
+	"devDependencies": {
+		"@types/node": "^6.14.7",
+		"typescript": "^2.9.2",
+		"vsce": "^1.66.0",
+		"vscode": "^1.1.35"
+	},
+	"dependencies": {
+		"cjson": "^0.4.0",
+		"fs-extra": "^0.30.0",
+		"glob": "^7.1.4",
+		"guid": "0.0.12",
+		"lodash.debounce": "^4.0.8",
+		"lodash.intersection": "^4.4.0",
+		"mixpanel": "^0.4.0",
+		"mkdirp": "^0.5.1",
+		"module-alias": "^2.2.0",
+		"node-fetch": "^1.7.3",
+		"node-watch": "^0.4.0",
+		"openurl": "^1.1.1",
+		"orion-core": "file:orion-core",
+		"sencha-cmd": "github:sencha/node-sencha-cmd#v1.0.7",
+		"sencha-tern": "github:sencha/tern#v6.0.18",
+		"winston": "^2.4.4"
+	},
+	"_moduleAliases": {
+		"orion-core": "node_modules/orion-core"
+	},
+	"__metadata": {
+		"id": "b0ff7d86-c93d-496b-800b-8bed13e3cac5",
+		"publisherId": "a7924165-ed52-4ec0-98d2-e718037f7731",
+		"publisherDisplayName": "Sencha"
+	}
+}

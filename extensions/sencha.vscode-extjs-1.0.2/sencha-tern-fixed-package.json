@@ -1,0 +1,299 @@
+{
+  "_args": [
+    [
+      "github:sencha/tern#v6.0.18",
+      "/Users/dan/Sites/vscode-extjs"
+    ]
+  ],
+  "_from": "sencha/tern#v6.0.18",
+  "_id": "sencha-tern@git+ssh://git@github.com/sencha/tern.git#da5ad843f1b09b43565fc0d039d02cd98914b33b",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/sencha-tern",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "sencha/tern#v6.0.18",
+    "rawSpec": "sencha/tern#v6.0.18",
+    "saveSpec": "github:sencha/tern#v6.0.18",
+    "fetchSpec": null,
+    "gitCommittish": "v6.0.18"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+ssh://git@github.com/sencha/tern.git#da5ad843f1b09b43565fc0d039d02cd98914b33b",
+  "_spec": "sencha/tern#v6.0.18",
+  "_where": "/Users/dan/Sites/vscode-extjs",
+  "author": {
+    "name": "Mark Brocato",
+    "email": "mark.brocato@sencha.com"
+  },
+  "blint": {
+    "allowedGlobals": [
+      "tern",
+      "acorn",
+      "define",
+      "clearTimeout",
+      "setTimeout",
+      "__dirname",
+      "global",
+      "process"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/sencha/tern/issues"
+  },
+  "contributors": [
+    {
+      "name": "List of Tern contributors. Updated before every release."
+    },
+    {
+      "name": "Adam Faulkner"
+    },
+    {
+      "name": "Anders Thøgersen"
+    },
+    {
+      "name": "angelozerr"
+    },
+    {
+      "name": "Ben Joldersma"
+    },
+    {
+      "name": "Ben McCormick"
+    },
+    {
+      "name": "Brian Frichette"
+    },
+    {
+      "name": "Claus Reinke"
+    },
+    {
+      "name": "Connor Osborn"
+    },
+    {
+      "name": "Damien Diederen"
+    },
+    {
+      "name": "Dani Hodovic"
+    },
+    {
+      "name": "Dewdrops"
+    },
+    {
+      "name": "dloverin"
+    },
+    {
+      "name": "Dmitry Gutov"
+    },
+    {
+      "name": "Erik Tierney"
+    },
+    {
+      "name": "Forbes Lindesay"
+    },
+    {
+      "name": "Francisc Romano"
+    },
+    {
+      "name": "Hans Huebner"
+    },
+    {
+      "name": "Hiroaki Otsu"
+    },
+    {
+      "name": "impinball"
+    },
+    {
+      "name": "J David Smith"
+    },
+    {
+      "name": "Jeffrey Fisher"
+    },
+    {
+      "name": "Jonathan Persson"
+    },
+    {
+      "name": "Josh Giles"
+    },
+    {
+      "name": "jzhang"
+    },
+    {
+      "name": "katspaugh"
+    },
+    {
+      "name": "Kyle P Davis"
+    },
+    {
+      "name": "Marcel Gerber"
+    },
+    {
+      "name": "Marcello Bastea-Forte"
+    },
+    {
+      "name": "Marijn Haverbeke"
+    },
+    {
+      "name": "Matt"
+    },
+    {
+      "name": "Matthias Dahl"
+    },
+    {
+      "name": "MetaMemoryT"
+    },
+    {
+      "name": "Michael Russell"
+    },
+    {
+      "name": "Michał Grzejszczak"
+    },
+    {
+      "name": "Miguel Castillo"
+    },
+    {
+      "name": "Mihai Bazon"
+    },
+    {
+      "name": "Miroslav Bajtoš"
+    },
+    {
+      "name": "Mounir Lamouri"
+    },
+    {
+      "name": "Nate Eagleson"
+    },
+    {
+      "name": "Nick Malaguti"
+    },
+    {
+      "name": "Nicolas Petton"
+    },
+    {
+      "name": "Nico Weber"
+    },
+    {
+      "name": "othree"
+    },
+    {
+      "name": "Paul Bakker"
+    },
+    {
+      "name": "Paul Verest"
+    },
+    {
+      "name": "Peter Elmers"
+    },
+    {
+      "name": "Peter Farland"
+    },
+    {
+      "name": "Quinn Slack"
+    },
+    {
+      "name": "Randy Edmunds"
+    },
+    {
+      "name": "Renato Ferreira"
+    },
+    {
+      "name": "Reuben Thomas"
+    },
+    {
+      "name": "Ryan Stewart"
+    },
+    {
+      "name": "SAKURAI Masashi"
+    },
+    {
+      "name": "Sean Usick"
+    },
+    {
+      "name": "Sergey Chikuyonok"
+    },
+    {
+      "name": "Sérgio Ramos"
+    },
+    {
+      "name": "sevin7676"
+    },
+    {
+      "name": "Se-Won Kim"
+    },
+    {
+      "name": "Sindre Sorhus"
+    },
+    {
+      "name": "Slava Kim"
+    },
+    {
+      "name": "Stephan Seidt"
+    },
+    {
+      "name": "Steve Purcell"
+    },
+    {
+      "name": "stoskov"
+    },
+    {
+      "name": "Tim M. Madsen"
+    },
+    {
+      "name": "vheon"
+    }
+  ],
+  "dependencies": {
+    "acorn": "^2.3.0",
+    "comment-parser": "^0.3.0",
+    "fs-extra": "^1.0.0",
+    "jsonic": "^0.2.2",
+    "lodash": "^3.9.3",
+    "minimatch": "0.2",
+    "moment": "^2.10.6",
+    "properties-parser": "^0.3.0",
+    "rollbar": "^0.5.8",
+    "slash": "^1.0.0",
+    "stack-trace": "0.0.9",
+    "strip-bom": "^2.0.0",
+    "strip-json-comments": "^1.0.4",
+    "typescript": "=1.0.1",
+    "walkall": "git+https://github.com/sourcegraph/acorn-walkall.git",
+    "chai": "^3.0.0",
+    "chai-things": "^0.2.0",
+    "codemirror": "git://github.com/marijnh/CodeMirror.git",
+    "glob": "^5.0.14",
+    "gulp": "^3.9.0",
+    "mocha-teamcity-reporter": "^1.0.0",
+    "request": "^2.61.0",
+    "sentence-tokenizer": "0.0.7"
+  },
+  "description": "A REST server that provides code completion for Ext JS based on https://github.com/marijnh/tern.",
+  "devDependencies": {
+    "assertion-error": "^1.0.1",
+    "chai": "^3.0.0",
+    "chai-things": "^0.2.0",
+    "codemirror": "git://github.com/marijnh/CodeMirror.git",
+    "glob": "^5.0.14",
+    "gulp": "^3.9.0",
+    "minimist": "^1.1.1",
+    "mocha": "^2.3.0",
+    "mocha-teamcity-reporter": "^1.0.0",
+    "request": "^2.61.0",
+    "resolve": "^1.1.6",
+    "sentence-tokenizer": "0.0.7"
+  },
+  "homepage": "https://github.com/sencha/tern#readme",
+  "name": "sencha-tern",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sencha/tern.git"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha --timeout 15000 --reporter mocha-teamcity-reporter plugin/ext/test/unit",
+    "test-dev": "node_modules/mocha/bin/mocha --timeout 15000 plugin/ext/test/unit",
+    "test-sdks": "node_modules/mocha/bin/mocha --timeout 15000 --reporter mocha-teamcity-reporter plugin/ext/test/integration"
+  },
+  "version": "6.0.18"
+}

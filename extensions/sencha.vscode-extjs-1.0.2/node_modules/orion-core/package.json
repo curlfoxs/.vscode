@@ -1,0 +1,22 @@
+{
+  "name": "orion-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Sencha",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "express-useragent": "0.2.4",
+    "json5": "sencha/json5#master",
+    "user-agent-parser": "0.6.0",
+    "uuid": "2.0.2"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-jasmine": "2.4.0",
+    "jasmine-co": "^1.2.1",
+    "jasmine-reporters": "2.2.0",
+    "jasmine-terminal-reporter": "1.0.2"
+  }
+}

@@ -1,0 +1,11 @@
+body {
+    font: 13px helvetica, arial, verdana, sans-serif;
+}
+.main-header {
+    padding-left: 36px;
+    font-size: 18px;
+    font-weight: bold;
+    background: url(resources/images/sencha-logo.png) no-repeat;
+    height: 36px;
+    line-height: 36px;
+}

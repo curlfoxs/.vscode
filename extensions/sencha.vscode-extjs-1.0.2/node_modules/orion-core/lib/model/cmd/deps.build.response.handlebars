@@ -1,0 +1,24 @@
+{{#if debug}}
+# {{name}} = the name of the app or package
+# {{dir}} = build directory
+# {{type}} = 'app' or 'package'
+# {{buildName}} = build profile name (optional)
+# {{theme}} = the name of the theme (optional)
+# {{skipSss}} = disables sass portion of build (optional)
+{{/if}}
+config
+	-prop
+	include.all.resources=true
+    -prop
+    build.dir={{dir}}
+    -prop
+    sencha.compile#options=debug:true
+    -prop
+    sencha.compile#includePreprocessorTags=true
+{{#if buildName}}
+    -prop
+    build.name={{buildName}}
+{{/if}}
+then
+ant
+    build-dependencies

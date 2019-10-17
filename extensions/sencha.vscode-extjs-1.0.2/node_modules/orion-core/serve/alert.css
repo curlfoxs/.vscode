@@ -1,0 +1,70 @@
+.orion-mask-wrap {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+}
+
+.orion-mask-cell {
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b3000000, endColorstr=#b3000000);
+}
+
+.orion-alert {
+    position: relative;
+    display: inline-block;
+    font: 300 13px helvetica, arial, verdana, sans-serif;
+    border: 2px solid #519A70;
+    background: #519A70;
+    text-align: left;
+}
+
+.orion-alert-title {
+    padding: 10px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.orion-alert-body {
+    background: #fff;
+    padding: 15px 10px;
+}
+
+.orion-alert-footer {
+    background: #ececec;
+    text-align: center;
+    padding: 5px;
+}
+
+.orion-alert-button {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+    background: #519A70;
+    padding: 7px 10px;
+    margin-left: 8px;
+    border: 1px solid #4B8C67;
+}
+
+.orion-alert-button:first-child {
+    margin-left: 0;
+}
+
+.orion-alert-button:hover {
+    background: #4A8B65;
+    border-color: #447F5D;
+
+}
+
+.orion-alert-button:active {
+    background: #3A6C50;
+    border-color: #366349;
+}
+

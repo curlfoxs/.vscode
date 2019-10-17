@@ -1,0 +1,71 @@
+{{#if debug}}
+# {{name}} = the name of the app or package
+# {{dir}} = build directory
+# {{type}} = 'app' or 'package'
+# {{buildName}} = build profile name (optional)
+# {{theme}} = the name of the theme (optional)
+# {{skipSss}} = disables sass portion of build (optional)
+{{/if}}
+config
+	-prop
+	include.all.resources=true
+{{#if buildName}}
+    -prop
+    build.name={{buildName}}
+{{/if}}
+then
+compile
+    {{#if isApp}}
+    load-app
+        -cssBundleFile={{dir}}/resources/all.css
+        -tempDir={{dir}}/.temp
+        -tag={{name}}
+    and
+    {{/if}}
+    include
+        -all
+    and
+	microload
+		-operation=manifest
+		-bootstrap=true
+		-fashion=false
+		-tpl={0}
+		-out={{dir}}/manifest.json
+		-resourcePath={{dir}}
+		-basePath={{dir}}
+		+loadAllJsResources
+        -excludeBundle=true
+	and
+	microload
+		-operation=microloader
+		-microloaderPath=.sencha/{{type}}/Microloader.js
+		-bootPath=.sencha/{{type}}/Boot.js
+		-out={{dir}}/bootstrap.js
+{{#unless skipSass}}
+	and
+	sass
+		+etc
+        +vars
+        +rule
+        -include-all-sources=true
+		-class-name-vars=true
+		-forward=true
+		-variable=$image-search-path:'{{dir}}/resources' !default
+        {{#if theme}}
+        -variable=$theme-name: '{{theme}}' !default
+        {{/if}}
+        -out={{dir}}/resources/all.scss
+	and
+	resources
+		-p=resources
+		-excludes=-all*.css
+		-out={{dir}}/resources
+	and
+	resources
+		-model=true
+		-out={{dir}}/resources
+then
+fashion
+    {{dir}}/resources/all.scss
+    {{dir}}/resources/all.css
+{{/unless}}

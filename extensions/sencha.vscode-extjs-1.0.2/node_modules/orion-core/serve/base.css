@@ -1,0 +1,60 @@
+.orion-border-box,
+.orion-border-box * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.orion-noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.orion-mouse-pointer {
+    position: absolute;
+    height: 17px;
+    width: 11px;
+    top: 0;
+    left: 0;
+    background-image: url(resources/images/mouse-pointer.png);
+    z-index: 9999999999;
+    pointer-events: none;
+}
+
+.orion-mouse-pointer-mac {
+    background-image: url(resources/images/mouse-pointer-mac.png);
+}
+
+.orion-gesture-indicator-wrap {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: visible;
+    color: #cc2c2c;
+    z-index: 9999999998; /* shows "under" the mouse-pointer */
+    pointer-events: none;
+}
+
+.orion-gesture-indicator {
+    width: 1px;
+    height: 1px;
+    background: red;
+    opacity: .5;
+    border-radius: 50%;
+    transition: width 0.3s, height 0.3s, opacity 0.5s;
+    transform: translateX(-50%) translateY(-50%);
+    pointer-events: none;
+}
+
+.orion-gesture-indicator-on {
+    width: 30px;
+    height: 30px;
+}
+
+.orion-gesture-indicator-off {
+    opacity: 0;
+}

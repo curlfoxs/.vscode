@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <base href="{{relDir}}">
+    <script lang="javascript">
+        var Ext = Ext || {};
+        Ext.manifest = "{{relTempDir}}manifest.json";
+    </script>
+    {{#test type 'package'}}
+    <link rel="stylesheet" href="{{relTempDir}}resources/all.css"/>
+    {{/test}}
+    {{#if bootstrap}}
+    {{{bootstrap}}}
+    {{/if}}
+    <script src="{{relTempDir}}bootstrap.js"></script>
+</head>
+<body></body>
+</html>
