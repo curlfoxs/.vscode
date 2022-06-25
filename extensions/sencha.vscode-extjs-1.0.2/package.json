@@ -129,7 +129,7 @@
 		"mixpanel": "^0.4.0",
 		"mkdirp": "^0.5.1",
 		"module-alias": "^2.2.0",
-		"node-fetch": "^1.7.3",
+		"node-fetch": "^2.6.7",
 		"node-watch": "^0.4.0",
 		"openurl": "^1.1.1",
 		"orion-core": "file:orion-core",
